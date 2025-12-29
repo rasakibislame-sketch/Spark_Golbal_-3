@@ -1,1 +1,64 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Members</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loginBox" class="login-box">
+  <h2>🔒 Password Required</h2>
+  <input type="password" id="password" placeholder="Enter Password">
+  <button onclick="checkPassword()">Unlock</button>
+  <p id="error"></p>
+</div>
+
+<div id="content" class="hidden">
+  <h2>👥 Members List</h2>
+  <ol>
+    <li onclick="showDetails(1)">Member 01</li>
+    <li onclick="showDetails(2)">Member 02</li>
+    <li onclick="showDetails(3)">Member 03</li>
+    <li onclick="showDetails(4)">Member 04</li>
+    <li onclick="showDetails(5)">Member 05</li>
+    <!-- পরে ১৮ জন পর্যন্ত বাড়াবো -->
+  </ol>
+</div>
+
+<div id="detailsBox" class="popup hidden">
+  <div class="popup-content">
+    <h3>📄 Details</h3>
+    <pre id="detailsContent"></pre>
+    <button onclick="closeDetails()">Close</button>
+  </div>
+</div>
+
+<script>
+const PASSWORD = "1234";
+
+function checkPassword(){
+  const pass = document.getElementById("password").value;
+  if(pass === PASSWORD){
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("content").classList.remove("hidden");
+  }else{
+    document.getElementById("error").innerText="❌ Wrong Password";
+  }
+}
+
+function showDetails(id){
+  document.getElementById("detailsBox").classList.remove("hidden");
+  document.getElementById("detailsContent").innerText =
+    "Member "+id+"\n\nName: Example\nAge: 25\nWork: Developer\nBio: Full details here...";
+}
+
+function closeDetails(){
+  document.getElementById("detailsBox").classList.add("hidden");
+}
+</script>
+
+</body>
+</html>
